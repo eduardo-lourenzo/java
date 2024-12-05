@@ -10,6 +10,7 @@ public class SomaDeNumeros {
 
         System.out.print("Digite um número: ");
         number = inputReader.nextInt();
+        inputReader.close();
 
         // ((number + 1) * number)/2 
         for (int index = 1; index <= number; index++) {
