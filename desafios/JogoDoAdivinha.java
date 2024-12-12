@@ -20,5 +20,7 @@ package desafios;
  */
 
 public class JogoDoAdivinha {
-    
+    public static void main(String[] args) {
+        
+    }
 }
