@@ -1,6 +1,7 @@
 package desafios;
 
 import java.util.Random;
+import java.util.Scanner;
 
 /* 
 * [X] [ReqMin01] - Sortear número aleatório dentro de um intervalo.
@@ -27,7 +28,20 @@ public class JogoDoAdivinha {
     static final int LIMITE_DIFICIL = 100;
 
     public static void main(String[] args) {
-        System.out.println(obterNumeroAleatorio(LIMITE_FACIL));
+        int numeroSorteado;
+        int numeroEscolhido;
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Sorteando número.");
+        numeroSorteado = obterNumeroAleatorio(LIMITE_FACIL);
+
+        //[ ] [Test] - verificar se o número digitado está na faixa de valores válido.
+        System.out.print("Qual o seu palpite? ");
+        numeroEscolhido = scanner.nextInt();
+
+        System.out.println("Sorteado = " + numeroSorteado + " : " + numeroEscolhido + " = Palpite");
+
+        scanner.close();
     }
 
     public static int obterNumeroAleatorio(int limiteMaximo) {
