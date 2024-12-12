@@ -6,10 +6,10 @@ import java.util.Scanner;
 /* 
 * [X] [ReqMin01] - Sortear número aleatório dentro de um intervalo.
 * [X] [ReqMin02] - Obter palpite do jogador.
-* [ ] [ReqMin02a] -- Acerto = 10 pontos.
-* [ ] [ReqMin02b] -- 1 unidade de distãocia = 5 pontos.
-* [ ] [ReqMin02c] -- Erro = 0 pontos.
-* [ ] [ReqMin03] - Exibir pontuação ao final da rodada.
+* [X] [ReqMin02a] -- Acerto = 10 pontos.
+* [X] [ReqMin02b] -- 1 unidade de distãocia = 5 pontos.
+* [X] [ReqMin02c] -- Erro = 0 pontos.
+* [X] [ReqMin03] - Exibir pontuação ao final da rodada.
 * [ ] [ReqMed01] - Criar várias rodadas.
 * [ ] [ReqMed02] - Acumular a pontuação das rodadas.
 * [ ] [ReqMed03] - Perguntar se continua.
@@ -29,28 +29,40 @@ public class JogoDoAdivinha {
 
     public static void main(String[] args) {
         int numeroSorteado;
-        int numeroEscolhido;
+        int numeroDoPalpite;
+        int pontuaçãoDaRodada;
+        int diferencaAbsoluta;
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Sorteando número.");
         numeroSorteado = obterNumeroAleatorio(LIMITE_FACIL);
 
-        //[ ] [Test] - verificar se o número digitado está na faixa de valores válido.
         System.out.print("Qual o numero do seu palpite? ");
-        numeroEscolhido = scanner.nextInt();
+        numeroDoPalpite = scanner.nextInt();
 
-        while (numeroEscolhido < 0 || numeroEscolhido > LIMITE_FACIL) {
+        while (numeroDoPalpite < 0 || numeroDoPalpite > LIMITE_FACIL) {
             System.out.println("O palpite está fora da faixa de valores!");
-            System.out.println("Digite um número entre 0 e " + LIMITE_FACIL + ".");
-            numeroEscolhido = scanner.nextInt();
+            System.out.print("Digite um número entre 0 e " + LIMITE_FACIL + ": ");
+            numeroDoPalpite = scanner.nextInt();
         }
 
-        System.out.println("Sorteado = " + numeroSorteado + " : " + numeroEscolhido + " = Palpite");
+        diferencaAbsoluta = Math.abs(numeroSorteado - numeroDoPalpite);
+        if (diferencaAbsoluta == 0) {
+            pontuaçãoDaRodada = 10;
+        }else if (diferencaAbsoluta == 1) {
+            pontuaçãoDaRodada = 5;
+        } else {
+            pontuaçãoDaRodada = 0;
+        }
+
+        System.out.println("Pontuação da rodada = " + pontuaçãoDaRodada + ".");
+        System.out.println("Sorteado = " + numeroSorteado + " : " + numeroDoPalpite + " = Palpite");
 
         scanner.close();
     }
 
     public static int obterNumeroAleatorio(int limiteMaximo) {
+        //[ ] [Bug] - Corrigir faixa de valores.
         return new Random().nextInt(limiteMaximo + 1);
     }
 }
