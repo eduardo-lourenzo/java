@@ -1,15 +1,9 @@
 package desafios;
 
-import java.util.Random;
 import java.util.Scanner;
+import java.util.Random;
 
 /* 
-* [X] [ReqMin01] - Sortear número aleatório dentro de um intervalo.
-* [X] [ReqMin02] - Obter palpite do jogador.
-* [X] [ReqMin02a] -- Acerto = 10 pontos.
-* [X] [ReqMin02b] -- 1 unidade de distãocia = 5 pontos.
-* [X] [ReqMin02c] -- Erro = 0 pontos.
-* [X] [ReqMin03] - Exibir pontuação ao final da rodada.
 * [ ] [ReqMed01] - Criar várias rodadas.
 * [ ] [ReqMed02] - Acumular a pontuação das rodadas.
 * [ ] [ReqMed03] - Perguntar se continua.
@@ -37,12 +31,13 @@ public class JogoDoAdivinha {
         System.out.println("Sorteando número.");
         numeroSorteado = obterNumeroAleatorio(LIMITE_FACIL);
 
+        // [] Capturar excessão se não for um inteiro.
         System.out.print("Qual o numero do seu palpite? ");
         numeroDoPalpite = scanner.nextInt();
 
-        while (numeroDoPalpite < 0 || numeroDoPalpite > LIMITE_FACIL) {
+        while (numeroDoPalpite < 1 || numeroDoPalpite > LIMITE_FACIL) {
             System.out.println("O palpite está fora da faixa de valores!");
-            System.out.print("Digite um número entre 0 e " + LIMITE_FACIL + ": ");
+            System.out.print("Digite um número entre 1 e " + LIMITE_FACIL + ": ");
             numeroDoPalpite = scanner.nextInt();
         }
 
@@ -62,7 +57,6 @@ public class JogoDoAdivinha {
     }
 
     public static int obterNumeroAleatorio(int limiteMaximo) {
-        //[ ] [Bug] - Corrigir faixa de valores.
-        return new Random().nextInt(limiteMaximo + 1);
+        return new Random().nextInt(limiteMaximo) + 1;
     }
 }
