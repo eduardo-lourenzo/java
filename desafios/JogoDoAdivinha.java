@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 /* 
 * [X] [ReqMin01] - Sortear número aleatório dentro de um intervalo.
-* [ ] [ReqMin02] - Obter palpite do jogador.
+* [X] [ReqMin02] - Obter palpite do jogador.
 * [ ] [ReqMin02a] -- Acerto = 10 pontos.
 * [ ] [ReqMin02b] -- 1 unidade de distãocia = 5 pontos.
 * [ ] [ReqMin02c] -- Erro = 0 pontos.
@@ -36,8 +36,14 @@ public class JogoDoAdivinha {
         numeroSorteado = obterNumeroAleatorio(LIMITE_FACIL);
 
         //[ ] [Test] - verificar se o número digitado está na faixa de valores válido.
-        System.out.print("Qual o seu palpite? ");
+        System.out.print("Qual o numero do seu palpite? ");
         numeroEscolhido = scanner.nextInt();
+
+        while (numeroEscolhido < 0 || numeroEscolhido > LIMITE_FACIL) {
+            System.out.println("O palpite está fora da faixa de valores!");
+            System.out.println("Digite um número entre 0 e " + LIMITE_FACIL + ".");
+            numeroEscolhido = scanner.nextInt();
+        }
 
         System.out.println("Sorteado = " + numeroSorteado + " : " + numeroEscolhido + " = Palpite");
 
