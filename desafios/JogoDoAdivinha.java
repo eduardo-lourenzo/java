@@ -5,7 +5,7 @@ import java.util.Random;
 
 /* 
 * [X] [ReqMed01] - Criar várias rodadas.
-* [ ] [ReqMed02] - Acumular a pontuação das rodadas.
+* [X] [ReqMed02] - Acumular a pontuação das rodadas.
 * [ ] [ReqMed03] - Perguntar se continua.
 * [ ] [ReqMax01] - Adicionar níveis de dificuldade.
 * [ ] [ReqMax01a] -- Fácil: Números entre 1 e 10.
@@ -25,15 +25,17 @@ public class JogoDoAdivinha {
         boolean continuarJogando = true;
         int numeroSorteado;
         int numeroDoPalpite;
-        int pontuaçãoDaRodada;
+        int pontuacaoDaRodada;
+        int pontuacaoDoJogo = 0;
         int diferencaAbsoluta;
         Scanner scanner = new Scanner(System.in);
 
         while (continuarJogando) {
-            System.out.println("Sorteando número.");
+            System.out.println("___________________");
+            System.out.println("Sorteando número...");
             numeroSorteado = obterNumeroAleatorio(LIMITE_FACIL);
 
-            // [] Capturar excessão se não for um inteiro.
+            // [fix] Capturar excessão se não for um inteiro.
             System.out.print("Qual o numero do seu palpite? ");
             numeroDoPalpite = scanner.nextInt();
 
@@ -43,25 +45,30 @@ public class JogoDoAdivinha {
                 numeroDoPalpite = scanner.nextInt();
             }
 
+            // [feat] - Criar função que retorna a pontuação.
             diferencaAbsoluta = Math.abs(numeroSorteado - numeroDoPalpite);
             if (diferencaAbsoluta == 0) {
-                pontuaçãoDaRodada = 10;
+                pontuacaoDaRodada = 10;
             } else if (diferencaAbsoluta == 1) {
-                pontuaçãoDaRodada = 5;
+                pontuacaoDaRodada = 5;
             } else {
-                pontuaçãoDaRodada = 0;
+                pontuacaoDaRodada = 0;
             }
 
-            System.out.println("Pontuação da rodada = " + pontuaçãoDaRodada + ".");
-            System.out.println("Sorteado = " + numeroSorteado + " : " + numeroDoPalpite + " = Palpite");
+            pontuacaoDoJogo += pontuacaoDaRodada;
 
-            // [ ] [fix] - Tratar entrada do usuário.
-            // [ ] [feat] - Cirar função que retorna um booleano.
+            System.out.println("Sorteado = " + numeroSorteado + " : " + numeroDoPalpite + " = Palpite");
+            System.out.println("Pontuação da rodada = " + pontuacaoDaRodada + ".");
+
+            // [fix] - Tratar entrada do usuário.
+            // [feat] - Cirar função que retorna um booleano.
             System.out.println("Deseja continuar jogando?");
             System.out.print("0 = Não | 1 = Sim: ");
             continuarJogando = (scanner.nextInt() == 0) ? false : true;
         }
         scanner.close();
+
+        System.out.println("Pontuação do jogo: " + pontuacaoDoJogo);
     }
 
     public static int obterNumeroAleatorio(int limiteMaximo) {
