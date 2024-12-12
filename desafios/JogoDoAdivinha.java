@@ -1,5 +1,7 @@
 package desafios;
 
+import java.util.Random;
+
 /* 
  * [ ] [ReqMin01] - Sortear número aleatório dentro de um intervalo.
  * [ ] [ReqMin02] - Obter palpite do jogador.
@@ -21,6 +23,10 @@ package desafios;
 
 public class JogoDoAdivinha {
     public static void main(String[] args) {
-        
+        System.out.println(obterNumeroAleatorio(10));
+    }
+
+    public static int obterNumeroAleatorio(int valorMaximo) {
+        return new Random().nextInt(valorMaximo + 1);
     }
 }
