@@ -6,7 +6,7 @@ import java.util.Random;
 /* 
 * [X] [ReqMed01] - Criar várias rodadas.
 * [X] [ReqMed02] - Acumular a pontuação das rodadas.
-* [ ] [ReqMed03] - Perguntar se continua.
+* [X] [ReqMed03] - Perguntar se continua.
 * [ ] [ReqMax01] - Adicionar níveis de dificuldade.
 * [ ] [ReqMax01a] -- Fácil: Números entre 1 e 10.
 * [ ] [ReqMax01b] -- Médio: Números entre 1 e 50.
@@ -23,17 +23,16 @@ public class JogoDoAdivinha {
 
     public static void main(String[] args) {
         boolean continuarJogando = true;
-        int numeroSorteado;
+        int numeroDoSorteio;
         int numeroDoPalpite;
         int pontuacaoDaRodada;
         int pontuacaoDoJogo = 0;
         int diferencaAbsoluta;
         Scanner scanner = new Scanner(System.in);
 
+        imprimirBoaVinda();
         while (continuarJogando) {
-            System.out.println("___________________");
-            System.out.println("Sorteando número...");
-            numeroSorteado = obterNumeroAleatorio(LIMITE_FACIL);
+            numeroDoSorteio = obterNumeroAleatorio(LIMITE_FACIL);
 
             // [fix] Capturar excessão se não for um inteiro.
             System.out.print("Qual o numero do seu palpite? ");
@@ -46,7 +45,7 @@ public class JogoDoAdivinha {
             }
 
             // [feat] - Criar função que retorna a pontuação.
-            diferencaAbsoluta = Math.abs(numeroSorteado - numeroDoPalpite);
+            diferencaAbsoluta = Math.abs(numeroDoSorteio - numeroDoPalpite);
             if (diferencaAbsoluta == 0) {
                 pontuacaoDaRodada = 10;
             } else if (diferencaAbsoluta == 1) {
@@ -57,11 +56,12 @@ public class JogoDoAdivinha {
 
             pontuacaoDoJogo += pontuacaoDaRodada;
 
-            System.out.println("Sorteado = " + numeroSorteado + " : " + numeroDoPalpite + " = Palpite");
+            System.out.println("Sorteado = " + numeroDoSorteio + " : " + numeroDoPalpite + " = Palpite");
             System.out.println("Pontuação da rodada = " + pontuacaoDaRodada + ".");
 
             // [fix] - Tratar entrada do usuário.
             // [feat] - Cirar função que retorna um booleano.
+            System.out.println("_________________________");
             System.out.println("Deseja continuar jogando?");
             System.out.print("0 = Não | 1 = Sim: ");
             continuarJogando = (scanner.nextInt() == 0) ? false : true;
@@ -69,9 +69,25 @@ public class JogoDoAdivinha {
         scanner.close();
 
         System.out.println("Pontuação do jogo: " + pontuacaoDoJogo);
+        imprimirDespedida();
+    }
+
+    public static void imprimirBoaVinda() {
+        System.out.println("============================");
+        System.out.println("Bem-vindo ao Jogo do Adivinha");
+        System.out.println("============================");
+    }
+    
+    public static void imprimirDespedida() {
+        System.out.println("=============================");
+        System.out.println("Encerrando o Jogo do Adivinha");
+        System.out.println("=============================");
     }
 
     public static int obterNumeroAleatorio(int limiteMaximo) {
+        System.out.println("___________________");
+        System.out.println("Sorteando número...");
+
         return new Random().nextInt(limiteMaximo) + 1;
     }
 }
