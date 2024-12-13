@@ -32,24 +32,25 @@ public class JogoDoAdivinha {
         int pontuacaoDoJogo = 0;
 
         imprimirBoaVinda();
-        while (continuarRodada) {
+        do {
             numeroDoSorteio = obterNumeroAleatorio(LIMITE_FACIL);
             numeroDoPalpite = escolherPalpite(LIMITE_FACIL);
             pontuacaoDaRodada = obterPontuação(numeroDoSorteio, numeroDoPalpite);
-            
+
             pontuacaoDoJogo += pontuacaoDaRodada;
 
             System.out.println("Sorteado = " + numeroDoSorteio + " : " + numeroDoPalpite + " = Palpite");
             System.out.println("Pontuação da rodada = " + pontuacaoDaRodada + ".");
 
             continuarRodada = continuarJogando();
-        }
+        }while (continuarRodada);
+        
         scanner.close();
 
         System.out.println("Pontuação do jogo: " + pontuacaoDoJogo);
-        
+
         scanner.close();
-        
+
         imprimirDespedida();
     }
 
@@ -69,7 +70,6 @@ public class JogoDoAdivinha {
         boolean travado;
         boolean opcaoBooleana = false;
         int opcaoInteira;
-        
 
         do {
             try {
@@ -86,7 +86,7 @@ public class JogoDoAdivinha {
                     travado = false;
                 } else {
                     throw new InputMismatchException();
-                } 
+                }
             } catch (Exception e) {
                 System.err.println("A entrada é inválida!");
                 scanner.nextLine();
@@ -111,7 +111,7 @@ public class JogoDoAdivinha {
                 }
 
                 travado = false;
-                
+
             } catch (Exception e) {
                 System.out.println("O palpite está fora da faixa de valores!");
                 scanner.nextLine();
@@ -131,7 +131,7 @@ public class JogoDoAdivinha {
 
     public static int obterPontuação(int numeroEsquerdo, int numeroDireito) {
         int diferencaAbsoluta = Math.abs(numeroEsquerdo - numeroDireito);
-       
+
         if (diferencaAbsoluta == 0) {
             return 10;
         } else if (diferencaAbsoluta == 1) {
