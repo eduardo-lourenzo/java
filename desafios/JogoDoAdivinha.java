@@ -1,6 +1,7 @@
 package desafios;
 
 import java.util.Scanner;
+import java.util.InputMismatchException;
 import java.util.Random;
 
 /* 
@@ -21,17 +22,18 @@ public class JogoDoAdivinha {
     static final int LIMITE_MEDIO = 50;
     static final int LIMITE_DIFICIL = 100;
 
+    public static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        boolean continuarJogando = true;
+        boolean continuarRodada = true;
         int numeroDoSorteio;
         int numeroDoPalpite;
         int pontuacaoDaRodada;
         int pontuacaoDoJogo = 0;
         int diferencaAbsoluta;
-        Scanner scanner = new Scanner(System.in);
 
         imprimirBoaVinda();
-        while (continuarJogando) {
+        while (continuarRodada) {
             numeroDoSorteio = obterNumeroAleatorio(LIMITE_FACIL);
 
             // [fix] Capturar excessão se não for um inteiro.
@@ -59,12 +61,7 @@ public class JogoDoAdivinha {
             System.out.println("Sorteado = " + numeroDoSorteio + " : " + numeroDoPalpite + " = Palpite");
             System.out.println("Pontuação da rodada = " + pontuacaoDaRodada + ".");
 
-            // [fix] - Tratar entrada do usuário.
-            // [feat] - Cirar função que retorna um booleano.
-            System.out.println("_________________________");
-            System.out.println("Deseja continuar jogando?");
-            System.out.print("0 = Não | 1 = Sim: ");
-            continuarJogando = (scanner.nextInt() == 0) ? false : true;
+            continuarRodada = continuarJogando();
         }
         scanner.close();
 
@@ -77,11 +74,46 @@ public class JogoDoAdivinha {
         System.out.println("Bem-vindo ao Jogo do Adivinha");
         System.out.println("============================");
     }
-    
+
     public static void imprimirDespedida() {
         System.out.println("=============================");
         System.out.println("Encerrando o Jogo do Adivinha");
         System.out.println("=============================");
+    }
+
+    public static boolean continuarJogando() {
+        // [fix] - Tratar entrada do usuário.
+
+        // boolean travado = true;
+        boolean opcaoBooleana = false;
+        int opcaoInteira;
+        
+
+        // do {
+        //     try {
+                System.out.println("_________________________");
+                System.out.println("Deseja continuar jogando?");
+                System.out.print("0 = Não | 1 = Sim: ");
+                opcaoInteira = scanner.nextInt();
+
+                if (opcaoInteira == 0) {
+                    opcaoBooleana = false;
+                    // travado = false;
+                } else if (opcaoInteira == 1) {
+                    opcaoBooleana = true;
+                    // travado = false;
+                } else {
+                    throw new InputMismatchException();
+                } 
+        //     } catch (Exception e) {
+        //         // TO-DO: handle exception
+        //         System.err.println("A entrada é inválida!");
+        //         scanner.nextLine();
+        //         travado = true;
+        //     }
+        // } while (travado);
+
+        return opcaoBooleana;
     }
 
     public static int obterNumeroAleatorio(int limiteMaximo) {
