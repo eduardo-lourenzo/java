@@ -30,23 +30,13 @@ public class JogoDoAdivinha {
         int numeroDoPalpite;
         int pontuacaoDaRodada;
         int pontuacaoDoJogo = 0;
-        int diferencaAbsoluta;
 
         imprimirBoaVinda();
         while (continuarRodada) {
             numeroDoSorteio = obterNumeroAleatorio(LIMITE_FACIL);
             numeroDoPalpite = escolherPalpite(LIMITE_FACIL);
-
-            // [feat] - Criar função que retorna a pontuação.
-            diferencaAbsoluta = Math.abs(numeroDoSorteio - numeroDoPalpite);
-            if (diferencaAbsoluta == 0) {
-                pontuacaoDaRodada = 10;
-            } else if (diferencaAbsoluta == 1) {
-                pontuacaoDaRodada = 5;
-            } else {
-                pontuacaoDaRodada = 0;
-            }
-
+            pontuacaoDaRodada = obterPontuação(numeroDoSorteio, numeroDoPalpite);
+            
             pontuacaoDoJogo += pontuacaoDaRodada;
 
             System.out.println("Sorteado = " + numeroDoSorteio + " : " + numeroDoPalpite + " = Palpite");
@@ -137,5 +127,17 @@ public class JogoDoAdivinha {
         System.out.println("Sorteando número...");
 
         return new Random().nextInt(limiteMaximo) + 1;
+    }
+
+    public static int obterPontuação(int numeroEsquerdo, int numeroDireito) {
+        int diferencaAbsoluta = Math.abs(numeroEsquerdo - numeroDireito);
+       
+        if (diferencaAbsoluta == 0) {
+            return 10;
+        } else if (diferencaAbsoluta == 1) {
+            return 5;
+        } else {
+            return 0;
+        }
     }
 }
