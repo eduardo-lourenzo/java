@@ -35,16 +35,7 @@ public class JogoDoAdivinha {
         imprimirBoaVinda();
         do {
             numeroDoSorteio = obterNumeroAleatorio(LIMITE_FACIL);
-
-            // [fix] Capturar excessão se não for um inteiro.
-            System.out.print("Qual o numero do seu palpite? ");
-            numeroDoPalpite = scanner.nextInt();
-
-            while (numeroDoPalpite < 1 || numeroDoPalpite > LIMITE_FACIL) {
-                System.out.println("O palpite está fora da faixa de valores!");
-                System.out.print("Digite um número entre 1 e " + LIMITE_FACIL + ": ");
-                numeroDoPalpite = scanner.nextInt();
-            }
+            numeroDoPalpite = escolherPalpite(LIMITE_FACIL);
 
             // [feat] - Criar função que retorna a pontuação.
             diferencaAbsoluta = Math.abs(numeroDoSorteio - numeroDoPalpite);
@@ -65,9 +56,9 @@ public class JogoDoAdivinha {
         } while (continuarRodada);
 
         System.out.println("Pontuação do jogo: " + pontuacaoDoJogo);
-        
+
         scanner.close();
-        
+
         imprimirDespedida();
     }
 
@@ -84,7 +75,7 @@ public class JogoDoAdivinha {
     }
 
     public static boolean continuarJogando() {
-        boolean travado = true;
+        boolean travado;
         boolean opcaoBooleana = false;
         int opcaoInteira;
 
@@ -105,7 +96,6 @@ public class JogoDoAdivinha {
                     throw new InputMismatchException();
                 }
             } catch (Exception e) {
-                // TO-DO: handle exception
                 System.err.println("A entrada é inválida!");
                 scanner.nextLine();
                 travado = true;
@@ -113,6 +103,32 @@ public class JogoDoAdivinha {
         } while (travado);
 
         return opcaoBooleana;
+    }
+
+    public static int escolherPalpite(int limiteMaximo) {
+        // [fix] Capturar excessão se não for um inteiro.
+        boolean travado;
+        int numeroEscolhido = 0;
+
+        do {
+            try {
+                System.out.print("Digite um número entre 1 e " + limiteMaximo + ": ");
+                numeroEscolhido = scanner.nextInt();
+
+                if (numeroEscolhido < 1 || numeroEscolhido >= limiteMaximo) {
+                    throw new InputMismatchException();
+                }
+
+                travado = false;
+
+            } catch (Exception e) {
+                System.out.println("O palpite está fora da faixa de valores!");
+                scanner.nextLine();
+                travado = true;
+            }
+        } while (travado);
+
+        return numeroEscolhido;
     }
 
     public static int obterNumeroAleatorio(int limiteMaximo) {
