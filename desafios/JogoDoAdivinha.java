@@ -5,9 +5,6 @@ import java.util.InputMismatchException;
 import java.util.Random;
 
 /* 
-* [X] [ReqMed01] - Criar várias rodadas.
-* [X] [ReqMed02] - Acumular a pontuação das rodadas.
-* [X] [ReqMed03] - Perguntar se continua.
 * [ ] [ReqMax01] - Adicionar níveis de dificuldade.
 * [ ] [ReqMax01a] -- Fácil: Números entre 1 e 10.
 * [ ] [ReqMax01b] -- Médio: Números entre 1 e 50.
@@ -25,7 +22,7 @@ public class JogoDoAdivinha {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        boolean continuarRodada = true;
+        boolean continuarRodada;
         int numeroDoSorteio;
         int numeroDoPalpite;
         int pontuacaoDaRodada;
@@ -35,7 +32,7 @@ public class JogoDoAdivinha {
         do {
             numeroDoSorteio = obterNumeroAleatorio(LIMITE_FACIL);
             numeroDoPalpite = escolherPalpite(LIMITE_FACIL);
-            pontuacaoDaRodada = obterPontuação(numeroDoSorteio, numeroDoPalpite);
+            pontuacaoDaRodada = obterPontuacao(numeroDoSorteio, numeroDoPalpite);
 
             pontuacaoDoJogo += pontuacaoDaRodada;
 
@@ -44,7 +41,7 @@ public class JogoDoAdivinha {
 
             continuarRodada = continuarJogando();
         }while (continuarRodada);
-        
+
         scanner.close();
 
         System.out.println("Pontuação do jogo: " + pontuacaoDoJogo);
@@ -129,7 +126,7 @@ public class JogoDoAdivinha {
         return new Random().nextInt(limiteMaximo) + 1;
     }
 
-    public static int obterPontuação(int numeroEsquerdo, int numeroDireito) {
+    public static int obterPontuacao(int numeroEsquerdo, int numeroDireito) {
         int diferencaAbsoluta = Math.abs(numeroEsquerdo - numeroDireito);
 
         if (diferencaAbsoluta == 0) {
