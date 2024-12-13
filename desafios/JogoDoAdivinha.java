@@ -25,7 +25,7 @@ public class JogoDoAdivinha {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        boolean continuarRodada = true;
+        boolean continuarRodada;
         int numeroDoSorteio;
         int numeroDoPalpite;
         int pontuacaoDaRodada;
@@ -33,7 +33,7 @@ public class JogoDoAdivinha {
         int diferencaAbsoluta;
 
         imprimirBoaVinda();
-        while (continuarRodada) {
+        do {
             numeroDoSorteio = obterNumeroAleatorio(LIMITE_FACIL);
 
             // [fix] Capturar excessão se não for um inteiro.
@@ -62,10 +62,12 @@ public class JogoDoAdivinha {
             System.out.println("Pontuação da rodada = " + pontuacaoDaRodada + ".");
 
             continuarRodada = continuarJogando();
-        }
-        scanner.close();
+        } while (continuarRodada);
 
         System.out.println("Pontuação do jogo: " + pontuacaoDoJogo);
+        
+        scanner.close();
+        
         imprimirDespedida();
     }
 
@@ -85,7 +87,6 @@ public class JogoDoAdivinha {
         boolean travado = true;
         boolean opcaoBooleana = false;
         int opcaoInteira;
-        
 
         do {
             try {
@@ -102,7 +103,7 @@ public class JogoDoAdivinha {
                     travado = false;
                 } else {
                     throw new InputMismatchException();
-                } 
+                }
             } catch (Exception e) {
                 // TO-DO: handle exception
                 System.err.println("A entrada é inválida!");
