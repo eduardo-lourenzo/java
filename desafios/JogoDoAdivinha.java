@@ -108,12 +108,11 @@ public class JogoDoAdivinha {
     }
 
     public static int escolherPalpite(int limiteMaximo) {
-        // [fix] Capturar excessão se não for um inteiro.
-        // boolean travado;
+        boolean travado;
         int numeroEscolhido = 0;
 
-        // do {
-        //     try {
+        do {
+            try {
                 System.out.print("Digite um número entre 1 e " + limiteMaximo + ": ");
                 numeroEscolhido = scanner.nextInt();
 
@@ -121,14 +120,14 @@ public class JogoDoAdivinha {
                     throw new InputMismatchException();
                 }
 
-                // travado = false;
-
-        //     } catch (Exception e) {
-        //         System.out.println("O palpite está fora da faixa de valores!");
-        //         scanner.nextLine();
-        //         travado = true;
-        //     }
-        // } while (travado);
+                travado = false;
+                
+            } catch (Exception e) {
+                System.out.println("O palpite está fora da faixa de valores!");
+                scanner.nextLine();
+                travado = true;
+            }
+        } while (travado);
 
         return numeroEscolhido;
     }
