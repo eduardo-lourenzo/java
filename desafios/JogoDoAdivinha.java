@@ -84,6 +84,15 @@ public class JogoDoAdivinha {
         System.out.println("Encerrando o Jogo do Adivinha");
         System.out.println("=============================");
     }
+   
+    public static void imprimirNiveis() {
+        System.out.println("_________________");
+        System.out.println("Escolha um Nível:");
+        
+        for (NivelDeDificuldade nivel: NivelDeDificuldade.values()) {
+            System.err.println(nivel.ordinal() + ": " + nivel.descricao);
+        }
+    }
 
     public static boolean continuarJogando() {
         boolean travado;
@@ -122,6 +131,7 @@ public class JogoDoAdivinha {
 
         do {
             try {
+                imprimirNiveis();
                 System.out.print("Digite um número entre 1 e " + limiteMaximo + ": ");
                 numeroEscolhido = scanner.nextInt();
 
@@ -159,4 +169,9 @@ public class JogoDoAdivinha {
             return 0;
         }
     }
+
+    // public static int escolherNivel(int opcao) {
+
+    //     return 0;
+    // }
 }
