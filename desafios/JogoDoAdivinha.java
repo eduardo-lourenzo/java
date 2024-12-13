@@ -82,15 +82,13 @@ public class JogoDoAdivinha {
     }
 
     public static boolean continuarJogando() {
-        // [fix] - Tratar entrada do usuário.
-
-        // boolean travado = true;
+        boolean travado = true;
         boolean opcaoBooleana = false;
         int opcaoInteira;
         
 
-        // do {
-        //     try {
+        do {
+            try {
                 System.out.println("_________________________");
                 System.out.println("Deseja continuar jogando?");
                 System.out.print("0 = Não | 1 = Sim: ");
@@ -98,20 +96,20 @@ public class JogoDoAdivinha {
 
                 if (opcaoInteira == 0) {
                     opcaoBooleana = false;
-                    // travado = false;
+                    travado = false;
                 } else if (opcaoInteira == 1) {
                     opcaoBooleana = true;
-                    // travado = false;
+                    travado = false;
                 } else {
                     throw new InputMismatchException();
                 } 
-        //     } catch (Exception e) {
-        //         // TO-DO: handle exception
-        //         System.err.println("A entrada é inválida!");
-        //         scanner.nextLine();
-        //         travado = true;
-        //     }
-        // } while (travado);
+            } catch (Exception e) {
+                // TO-DO: handle exception
+                System.err.println("A entrada é inválida!");
+                scanner.nextLine();
+                travado = true;
+            }
+        } while (travado);
 
         return opcaoBooleana;
     }
