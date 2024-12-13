@@ -51,6 +51,28 @@ public class JogoDoAdivinha {
         imprimirDespedida();
     }
 
+    public static enum NivelDeDificuldade {
+        FACIL("fácil", 10),
+        MEDIO("médio", 50),
+        DIFICIL("difícil", 100);
+
+        private final int valor;
+        private final String descricao;
+
+        NivelDeDificuldade(String descricao, int valor) {
+            this.descricao = descricao;
+            this.valor = valor;
+        }
+
+        public String obterDescricao() {
+            return descricao;
+        }
+
+        public int obterValor() {
+            return valor;
+        }
+    }
+
     public static void imprimirBoaVinda() {
         System.out.println("============================");
         System.out.println("Bem-vindo ao Jogo do Adivinha");
