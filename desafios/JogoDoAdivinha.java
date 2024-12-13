@@ -25,7 +25,7 @@ public class JogoDoAdivinha {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        boolean continuarRodada;
+        boolean continuarRodada = true;
         int numeroDoSorteio;
         int numeroDoPalpite;
         int pontuacaoDaRodada;
@@ -33,7 +33,7 @@ public class JogoDoAdivinha {
         int diferencaAbsoluta;
 
         imprimirBoaVinda();
-        do {
+        while (continuarRodada) {
             numeroDoSorteio = obterNumeroAleatorio(LIMITE_FACIL);
             numeroDoPalpite = escolherPalpite(LIMITE_FACIL);
 
@@ -53,12 +53,13 @@ public class JogoDoAdivinha {
             System.out.println("Pontuação da rodada = " + pontuacaoDaRodada + ".");
 
             continuarRodada = continuarJogando();
-        } while (continuarRodada);
-
-        System.out.println("Pontuação do jogo: " + pontuacaoDoJogo);
-
+        }
         scanner.close();
 
+        System.out.println("Pontuação do jogo: " + pontuacaoDoJogo);
+        
+        scanner.close();
+        
         imprimirDespedida();
     }
 
@@ -78,6 +79,7 @@ public class JogoDoAdivinha {
         boolean travado;
         boolean opcaoBooleana = false;
         int opcaoInteira;
+        
 
         do {
             try {
@@ -94,7 +96,7 @@ public class JogoDoAdivinha {
                     travado = false;
                 } else {
                     throw new InputMismatchException();
-                }
+                } 
             } catch (Exception e) {
                 System.err.println("A entrada é inválida!");
                 scanner.nextLine();
@@ -107,11 +109,11 @@ public class JogoDoAdivinha {
 
     public static int escolherPalpite(int limiteMaximo) {
         // [fix] Capturar excessão se não for um inteiro.
-        boolean travado;
+        // boolean travado;
         int numeroEscolhido = 0;
 
-        do {
-            try {
+        // do {
+        //     try {
                 System.out.print("Digite um número entre 1 e " + limiteMaximo + ": ");
                 numeroEscolhido = scanner.nextInt();
 
@@ -119,14 +121,14 @@ public class JogoDoAdivinha {
                     throw new InputMismatchException();
                 }
 
-                travado = false;
+                // travado = false;
 
-            } catch (Exception e) {
-                System.out.println("O palpite está fora da faixa de valores!");
-                scanner.nextLine();
-                travado = true;
-            }
-        } while (travado);
+        //     } catch (Exception e) {
+        //         System.out.println("O palpite está fora da faixa de valores!");
+        //         scanner.nextLine();
+        //         travado = true;
+        //     }
+        // } while (travado);
 
         return numeroEscolhido;
     }
