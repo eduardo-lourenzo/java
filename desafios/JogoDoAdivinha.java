@@ -52,10 +52,7 @@ public class JogoDoAdivinha {
         }while (continuarRodada);
         scanner.close();
 
-        System.out.println("_____________________");
-        System.out.println("Pontuação Final = " + pontuacaoDoJogo);
-        System.out.println("Acertos = " + listaDeAcertos);
-        System.out.println(" Erros  = " + listaDeErros);
+        imprimirResultado(pontuacaoDoJogo, listaDeAcertos, listaDeErros);
         imprimirDespedida();
     }
 
@@ -95,7 +92,7 @@ public class JogoDoAdivinha {
    
     public static void imprimirNiveis() {
         System.out.println("_________________");
-        System.out.println("Escolha um Nível:");
+        System.out.println("Digite o número do Nível desejado:");
         
         for (NivelDeDificuldade nivel: NivelDeDificuldade.values()) {
             System.err.print(nivel.ordinal() + " = " + nivel.descricao + " | ");
@@ -103,6 +100,13 @@ public class JogoDoAdivinha {
         System.out.print(" : ");
     }
 
+    public static void imprimirResultado(int pontuacaoFinal, List<Integer> listaDeAcertos, List<Integer> listaDeErros) {
+        System.out.println("_____________________");
+        System.out.println("Pontuação Final = " + pontuacaoFinal);
+        System.out.println("Acertos = " + listaDeAcertos);
+        System.out.println(" Erros  = " + listaDeErros);
+    }
+    
     public static boolean continuarJogando() {
         boolean travado;
         boolean opcaoBooleana = false;
