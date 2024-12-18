@@ -1,17 +1,14 @@
 package desafios;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Random;
 
 /* 
-* [X] [ReqMax01] - Adicionar níveis de dificuldade.
-* [X] [ReqMax01a] -- Fácil: Números entre 1 e 10.
-* [X] [ReqMax01b] -- Médio: Números entre 1 e 50.
-* [X] [ReqMax01c] -- Difícil: Números entre 1 e 100.
-* [X] [ReqMax02] - Exibir pontuação acumulada das rodadas.
-* [ ] [ReqMax02a] -- Exibir lista com os acertos.
-* [ ] [ReqMax02b] -- Exibir lista com os erros.
+* Created on : 12-12-2024
+* Author     : Eduardo Cardoso Lourenzo
 */
 
 public class JogoDoAdivinha {
@@ -28,6 +25,8 @@ public class JogoDoAdivinha {
         int numeroDoPalpite;
         int pontuacaoDaRodada;
         int pontuacaoDoJogo = 0;
+        List<Integer> listaDeAcertos = new ArrayList<Integer>();
+        List<Integer> listaDeErros = new ArrayList<Integer>();
 
         imprimirBoaVinda();
 
@@ -39,6 +38,11 @@ public class JogoDoAdivinha {
             pontuacaoDaRodada = obterPontuacao(numeroDoSorteio, numeroDoPalpite);
 
             pontuacaoDoJogo += pontuacaoDaRodada;
+            if (pontuacaoDaRodada == 10) {
+                listaDeAcertos.add(numeroDoPalpite);
+            } else {
+                listaDeErros.add(numeroDoPalpite);
+            }
 
             System.out.println("Sorteado = " + numeroDoSorteio + " : " + numeroDoPalpite + " = Palpite");
             System.out.println("Pontuação da rodada = " + pontuacaoDaRodada + ".");
@@ -46,9 +50,12 @@ public class JogoDoAdivinha {
 
             continuarRodada = continuarJogando();
         }while (continuarRodada);
-
         scanner.close();
 
+        System.out.println("_____________________");
+        System.out.println("Pontuação Final = " + pontuacaoDoJogo);
+        System.out.println("Acertos = " + listaDeAcertos);
+        System.out.println(" Erros  = " + listaDeErros);
         imprimirDespedida();
     }
 
