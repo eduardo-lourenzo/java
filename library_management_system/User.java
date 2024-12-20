@@ -5,7 +5,12 @@ import java.util.ArrayList;
 public class User {
     private String name;
     private int id;
-    private ArrayList<Book> borrowedBooks;
+    private ArrayList<Book> borrowedBooks = new ArrayList<Book>();
+
+    public User(String name, int id) {
+        this.name = name;
+        this.id = id;
+    }
 
     public String showDetails() {
         return  "Nome: " + name + ", ID: " + id;
