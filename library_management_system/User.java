@@ -10,11 +10,11 @@ public class User {
     public User(String name, int id) {
         this.name = name;
         this.id = id;
-        this.borrowedBooks  = new ArrayList<Book>();
+        this.borrowedBooks = new ArrayList<Book>();
     }
 
     public String showDetails() {
-        return  "Nome: " + name + ", ID: " + id;
+        return "Nome: " + name + ", ID: " + id;
     }
 
     public void addBook(Book book) {
@@ -23,9 +23,8 @@ public class User {
     }
 
     public void removeBook(Book book) {
-        // Override method equals( )
         int index = borrowedBooks.indexOf(book);
-        if(index > -1) {
+        if (index > -1) {
             borrowedBooks.remove(index);
         }
     }
