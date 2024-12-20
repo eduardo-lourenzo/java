@@ -1,5 +1,7 @@
 package library_management_system;
 
+import java.util.Objects;
+
 public class Book {
     private String title;
     private String author;
@@ -23,5 +25,12 @@ public class Book {
 
     public void devolve() {
         isAvailable = true;
+    }
+
+    @Override
+    public boolean equals(Object anotherBook) {
+        if (anotherBook == null || this.getClass() != anotherBook.getClass()) return false;
+        Book newBook = (Book) anotherBook;
+        return Objects.equals(this.isbn, newBook.isbn);
     }
 }
