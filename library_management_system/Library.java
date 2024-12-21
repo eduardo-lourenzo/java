@@ -14,4 +14,8 @@ public class Library {
     public void setBook(Book book) {
         this.listOfBooks.add(book);
     }
+
+    public void setUser(User user) {
+        this.listOfUsers.add(user);
+    }
 }
