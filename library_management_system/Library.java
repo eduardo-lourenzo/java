@@ -18,4 +18,9 @@ public class Library {
     public void registerUser(User user) {
         listOfUsers.add(user);
     }
+
+    public void showAvailableBooks() {
+        System.out.println("Livros disponíveis:");
+        listOfBooks.stream().filter(Book::getAvailability).forEach(book -> System.out.println(book.showDetails()));
+    }
 }
