@@ -23,11 +23,15 @@ public class User {
         borrowedBooks.add(book);
     }
 
-    public void removeBook(Book book) {
-        int index = borrowedBooks.indexOf(book);
-        if (index > -1) {
-            borrowedBooks.remove(index);
+    public boolean removeBook(Book book) {
+        int indexOfBook = borrowedBooks.indexOf(book);
+        if (indexOfBook > -1) {
+            borrowedBooks.remove(indexOfBook);
+            System.out.println("Livro removido!");
+            return true;
         }
+        System.out.println("Livro não encontrado!");
+        return false;
     }
 
     @Override
