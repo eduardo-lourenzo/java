@@ -7,15 +7,15 @@ public class Library {
     private ArrayList<User> listOfUsers;
 
     public Library() {
-        this.listOfBooks = new ArrayList<Book>();
-        this.listOfUsers = new ArrayList<User>();
+        listOfBooks = new ArrayList<Book>();
+        listOfUsers = new ArrayList<User>();
     }
 
     public void registerBook(Book book) {
-        this.listOfBooks.add(book);
+        listOfBooks.add(book);
     }
 
     public void registerUser(User user) {
-        this.listOfUsers.add(user);
+        listOfUsers.add(user);
     }
 }
