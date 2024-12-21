@@ -11,11 +11,11 @@ public class Library {
         this.listOfUsers = new ArrayList<User>();
     }
 
-    public void setBook(Book book) {
+    public void registerBook(Book book) {
         this.listOfBooks.add(book);
     }
 
-    public void setUser(User user) {
+    public void registerUser(User user) {
         this.listOfUsers.add(user);
     }
 }
