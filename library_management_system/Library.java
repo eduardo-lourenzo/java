@@ -19,6 +19,30 @@ public class Library {
         listOfUsers.add(user);
     }
 
+    public void realizeBorrow(String isbn, int idUser) {
+        int indexOfBook = listOfBooks.indexOf(new Book("", "", isbn));
+
+        if (indexOfBook > -1) {
+            Book chosenBook = listOfBooks.get(indexOfBook);
+            if (chosenBook.getAvailability()) {
+
+                int indexOfUser = listOfUsers.indexOf(new User("", idUser));
+                if (indexOfUser > -1) {
+                    if (listOfUsers.get(indexOfUser).addBook(chosenBook)) {
+                        System.out.println("Livro alugado com sucesso!");
+                        chosenBook.borrow();
+                    }
+                } else {
+                    System.out.println("Usuário não encontrado!");
+                }
+            } else {
+                System.out.println("O livro já está alugado!");
+            }
+        } else {
+            System.out.println("O livro não foi encontrado!");
+        }
+    }
+
     public void showAvailableBooks() {
         System.out.println("Livros disponíveis:");
         listOfBooks.stream().filter(Book::getAvailability).forEach(book -> System.out.println(book.showDetails()));
