@@ -32,10 +32,10 @@ public class User {
         int indexOfBook = borrowedBooks.indexOf(book);
         if (indexOfBook > -1) {
             borrowedBooks.remove(indexOfBook);
-            System.out.println("Livro removido!");
+            System.out.println("Livro foi removido!");
             return true;
         }
-        System.out.println("Livro não encontrado!");
+        System.out.println("Livro não está na lista do usuário!");
         return false;
     }
 

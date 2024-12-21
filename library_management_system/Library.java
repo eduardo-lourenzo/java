@@ -29,7 +29,7 @@ public class Library {
                 int indexOfUser = listOfUsers.indexOf(new User("", idUser));
                 if (indexOfUser > -1) {
                     if (listOfUsers.get(indexOfUser).addBook(chosenBook)) {
-                        System.out.println("Livro alugado com sucesso!");
+                        System.out.println("Empréstimo realizado com sucesso!");
                         chosenBook.borrow();
                     }
                 } else {
@@ -40,6 +40,26 @@ public class Library {
             }
         } else {
             System.out.println("O livro não foi encontrado!");
+        }
+    }
+
+    public void realizeDevolution(String isbn, int idUser) {
+        int indexOfUser = listOfUsers.indexOf(new User("", idUser));
+
+        if (indexOfUser > -1) {
+            User chosenUser = listOfUsers.get(indexOfUser);
+            Book chosenBook = new Book("", "", isbn);
+            int indexOfBook = listOfBooks.indexOf(chosenBook);
+            if (indexOfBook > -1) {
+                if (chosenUser.removeBook(chosenBook)) {
+                    System.out.println("livro devolvido com sucesso!");
+                    listOfBooks.get(indexOfBook).devolve();
+                }
+            } else {
+                System.out.println("Livro não cadastado!");
+            }
+        } else {
+            System.out.println("Usuário não encontrado!");
         }
     }
 
