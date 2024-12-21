@@ -19,8 +19,12 @@ public class User {
     }
 
     public void addBook(Book book) {
-        // Req = A user can borrow a maximum of 3 books at the same time.
-        borrowedBooks.add(book);
+        if (borrowedBooks.size() < 3) {
+            borrowedBooks.add(book);
+        } else {
+            System.out.println("Não é possível adicionar mais livros, " +
+                    "o usuário já possiu a quantidade máxima permitida.");
+        }
     }
 
     public boolean removeBook(Book book) {
