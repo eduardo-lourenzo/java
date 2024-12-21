@@ -1,6 +1,7 @@
 package library_management_system;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class User {
     private String name;
@@ -27,5 +28,12 @@ public class User {
         if (index > -1) {
             borrowedBooks.remove(index);
         }
+    }
+
+    @Override
+    public boolean equals(Object anotherUser) {
+        if (anotherUser == null || getClass() != anotherUser.getClass()) return false;
+        User newUser = (User) anotherUser;
+        return id == newUser.id;
     }
 }
