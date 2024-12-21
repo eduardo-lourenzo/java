@@ -12,7 +12,7 @@ public class Book {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
-        this.isAvailable = true;
+        isAvailable = true;
     }
 
     public String showDetails() {
@@ -26,6 +26,8 @@ public class Book {
     public void devolve() {
         isAvailable = true;
     }
+
+    public boolean getAvailability() {return isAvailable;}
 
     @Override
     public boolean equals(Object anotherBook) {
