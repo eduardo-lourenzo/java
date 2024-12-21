@@ -18,13 +18,14 @@ public class User {
         return "Nome: " + name + ", ID: " + id;
     }
 
-    public void addBook(Book book) {
+    public boolean addBook(Book book) {
         if (borrowedBooks.size() < 3) {
             borrowedBooks.add(book);
-        } else {
-            System.out.println("Não é possível adicionar mais livros, " +
-                    "o usuário já possiu a quantidade máxima permitida.");
+            return true;
         }
+        System.out.println("Não é possível adicionar mais livros, " +
+                "o usuário já possiu a quantidade máxima permitida.");
+        return false;
     }
 
     public boolean removeBook(Book book) {
