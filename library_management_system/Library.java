@@ -10,4 +10,8 @@ public class Library {
         this.listOfBooks = new ArrayList<Book>();
         this.listOfUsers = new ArrayList<User>();
     }
+
+    public void setBook(Book book) {
+        this.listOfBooks.add(book);
+    }
 }
