@@ -11,7 +11,7 @@ public class Main {
         String isbn;
         String name;
         User userTemporary;
-        Book bookTemporary
+        Book bookTemporary;
         Library library = new Library();
         Scanner scanner = new Scanner(System.in);
 
