@@ -1,5 +1,8 @@
 package library_management_system;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class Library {
@@ -66,5 +69,21 @@ public class Library {
     public void showAvailableBooks() {
         System.out.println("Livros disponíveis:");
         listOfBooks.stream().filter(Book::getAvailability).forEach(book -> System.out.println(book.showDetails()));
+    }
+
+    public void saveUsers() {
+        try {
+            File userFile = new File(".\\library_management_system\\user.csv");
+            FileWriter fileReader = new FileWriter(userFile);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileReader);
+
+            for (User user : listOfUsers) {
+                bufferedWriter.write(user.userToCSV() + "\n");
+            }
+
+            bufferedWriter.close ();
+        } catch (Exception e) {
+            System.out.println("Não foi possível salvar os usuários!");
+        }
     }
 }
