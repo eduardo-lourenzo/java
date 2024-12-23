@@ -19,8 +19,14 @@ public class Book {
         return "Título: " + title + ", Autor: " + author + ", ISBN: " + isbn;
     }
 
-    public String bookToCSV() {
-        return title+";"+author+";"+isbn;
+    public StringBuilder bookToCSV() {
+        StringBuilder bufferOfCSV = new StringBuilder();
+
+        bufferOfCSV.append(title).append(";");
+        bufferOfCSV.append(author).append(";");
+        bufferOfCSV.append(isbn).append(";");
+
+        return bufferOfCSV;
     }
 
     public void borrow() {
@@ -31,7 +37,9 @@ public class Book {
         isAvailable = true;
     }
 
-    public boolean getAvailability() {return isAvailable;}
+    public boolean getAvailability() {
+        return isAvailable;
+    }
 
     @Override
     public boolean equals(Object anotherBook) {
