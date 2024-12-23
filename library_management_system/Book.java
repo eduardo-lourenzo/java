@@ -25,6 +25,7 @@ public class Book {
         bufferOfCSV.append(title).append(";");
         bufferOfCSV.append(author).append(";");
         bufferOfCSV.append(isbn).append(";");
+        bufferOfCSV.append(isAvailable).append(";");
 
         return bufferOfCSV;
     }
