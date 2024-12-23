@@ -27,6 +27,7 @@ public class Main {
             System.out.println("6. Sair");
 
             option = scanner.nextInt();
+            scanner.nextLine();
 
             switch (option) {
                 case 1: {
@@ -85,6 +86,8 @@ public class Main {
             }
         } while (option != 6);
 
+        library.saveBooks();
+        library.saveUsers();
         scanner.close();
         System.out.println("Encerrando o Sistema de Gerenciamento de Biblioteca!");
     }
