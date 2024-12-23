@@ -1,6 +1,9 @@
 package library_management_system;
 
+import java.io.StringWriter;
+import java.util.Arrays;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class Book {
     private String title;
@@ -28,6 +31,15 @@ public class Book {
         bufferOfCSV.append(isAvailable).append(";");
 
         return bufferOfCSV;
+    }
+
+    public void csvToBook(String inputBook) {
+        String[] buffer = inputBook.split(";");
+
+        title = buffer[0];
+        author = buffer[1];
+        isbn = buffer[2];
+        isAvailable = Boolean.parseBoolean(buffer[3]);
     }
 
     public void borrow() {
