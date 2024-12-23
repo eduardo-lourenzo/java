@@ -19,6 +19,10 @@ public class Book {
         return "Título: " + title + ", Autor: " + author + ", ISBN: " + isbn;
     }
 
+    public String bookToCSV() {
+        return title+";"+author+";"+isbn;
+    }
+
     public void borrow() {
         isAvailable = false;
     }
