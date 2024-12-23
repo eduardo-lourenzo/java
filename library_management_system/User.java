@@ -20,9 +20,20 @@ public class User {
 
     public StringBuilder borrowedBooksToCSV(){
         StringBuilder bufferOfCSV = new StringBuilder();
+
         for(Book book:borrowedBooks) {
             bufferOfCSV.append(book.bookToCSV()).append(";");
         }
+
+        return bufferOfCSV;
+    }
+
+    public StringBuilder userToCSV() {
+        StringBuilder bufferOfCSV = new StringBuilder();
+
+        bufferOfCSV.append(name).append(";").append(id).append(";");
+        bufferOfCSV.append(borrowedBooksToCSV());
+
         return bufferOfCSV;
     }
 
