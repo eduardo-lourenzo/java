@@ -1,16 +1,17 @@
 package library_management_system;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class User {
-    private final String name;
-    private final int id;
-    private final ArrayList<Book> borrowedBooks;
+    private String name;
+    private int id;
+    private ArrayList<Book> borrowedBooks;
 
     public User(String name, int id) {
         this.name = name;
         this.id = id;
-        this.borrowedBooks = new ArrayList<>();
+        this.borrowedBooks = new ArrayList<Book>();
     }
 
     public String showDetails() {
