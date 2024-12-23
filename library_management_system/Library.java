@@ -1,9 +1,8 @@
 package library_management_system;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Library {
     private ArrayList<Book> listOfBooks;
@@ -12,6 +11,8 @@ public class Library {
     public Library() {
         listOfBooks = new ArrayList<Book>();
         listOfUsers = new ArrayList<User>();
+
+         loadBooks();
     }
 
     public void registerBook(Book book) {
@@ -73,17 +74,54 @@ public class Library {
 
     public void saveUsers() {
         try {
-            File userFile = new File(".\\library_management_system\\user.csv");
-            FileWriter fileReader = new FileWriter(userFile);
+            File usersFile = new File(".\\library_management_system\\users.csv");
+            FileWriter fileReader = new FileWriter(usersFile);
             BufferedWriter bufferedWriter = new BufferedWriter(fileReader);
 
             for (User user : listOfUsers) {
                 bufferedWriter.write(user.userToCSV() + "\n");
             }
 
-            bufferedWriter.close ();
+            bufferedWriter.close();
         } catch (Exception e) {
             System.out.println("Não foi possível salvar os usuários!");
+        }
+    }
+
+    public void saveBooks() {
+        try {
+            File booksFile = new File(".\\library_management_system\\books.csv");
+            FileWriter fileReader = new FileWriter(booksFile);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileReader);
+
+            for (Book book : listOfBooks) {
+                bufferedWriter.write(book.bookToCSV() + "\n");
+            }
+
+            bufferedWriter.close();
+        } catch (Exception e) {
+            System.out.println("Não foi possível salvar os livros!");
+        }
+    }
+
+    public void loadBooks() {
+        try {
+            File booksFile = new File(".\\library_management_system\\books.csv");
+            FileReader fileReader = new FileReader(booksFile);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String inputBook;
+            Book newBook;
+
+            while ((inputBook = bufferedReader.readLine()) != null) {
+
+                newBook = new Book("", "", "");
+                newBook.csvToBook(inputBook);
+                listOfBooks.add(newBook);
+            }
+
+            bufferedReader.close();
+        } catch (Exception e) {
+            System.out.println("Não foi possível carregar os livros!");
         }
     }
 }
