@@ -2,15 +2,14 @@ package library_management_system;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Library {
-    private ArrayList<Book> listOfBooks;
-    private ArrayList<User> listOfUsers;
+    private final ArrayList<Book> listOfBooks;
+    private final ArrayList<User> listOfUsers;
 
     public Library() {
-        listOfBooks = new ArrayList<Book>();
-        listOfUsers = new ArrayList<User>();
+        listOfBooks = new ArrayList<>();
+        listOfUsers = new ArrayList<>();
 
          loadBooks();
     }
