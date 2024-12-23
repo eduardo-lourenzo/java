@@ -22,7 +22,7 @@ public class User {
         StringBuilder bufferOfCSV = new StringBuilder();
 
         for(Book book:borrowedBooks) {
-            bufferOfCSV.append(book.bookToCSV()).append(";");
+            bufferOfCSV.append(book.bookToCSV());
         }
 
         return bufferOfCSV;
