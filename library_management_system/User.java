@@ -18,6 +18,14 @@ public class User {
         return "Nome: " + name + ", ID: " + id;
     }
 
+    public StringBuilder borrowedBooksToCSV(){
+        StringBuilder bufferOfCSV = new StringBuilder();
+        for(Book book:borrowedBooks) {
+            bufferOfCSV.append(book.bookToCSV()).append(";");
+        }
+        return bufferOfCSV;
+    }
+
     public boolean addBook(Book book) {
         if (borrowedBooks.size() < 3) {
             borrowedBooks.add(book);
