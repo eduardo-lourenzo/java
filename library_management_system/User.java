@@ -1,27 +1,26 @@
 package library_management_system;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class User {
-    private String name;
-    private int id;
-    private ArrayList<Book> borrowedBooks;
+    private final String name;
+    private final int id;
+    private final ArrayList<Book> borrowedBooks;
 
     public User(String name, int id) {
         this.name = name;
         this.id = id;
-        this.borrowedBooks = new ArrayList<Book>();
+        this.borrowedBooks = new ArrayList<>();
     }
 
     public String showDetails() {
         return "Nome: " + name + ", ID: " + id;
     }
 
-    public StringBuilder borrowedBooksToCSV(){
+    public StringBuilder borrowedBooksToCSV() {
         StringBuilder bufferOfCSV = new StringBuilder();
 
-        for(Book book:borrowedBooks) {
+        for (Book book : borrowedBooks) {
             bufferOfCSV.append(book.bookToCSV());
         }
 

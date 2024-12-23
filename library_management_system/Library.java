@@ -12,7 +12,7 @@ public class Library {
         listOfBooks = new ArrayList<Book>();
         listOfUsers = new ArrayList<User>();
 
-         loadBooks();
+        loadBooks();
     }
 
     public void registerBook(Book book) {
